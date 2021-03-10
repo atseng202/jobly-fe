@@ -31,10 +31,10 @@ const DEMO_USER = {
 
 function LoginForm({ login }) {
   const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState(null);
   const history = useHistory();
 
   /** Handle input changes and show them on input */
-
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData((prevFormData) => {
@@ -56,7 +56,8 @@ function LoginForm({ login }) {
       history.push("/companies");
     } else {
       // TODO: need to change to something more presentable
-      alert(result.errors.join(""));
+      // alert(result.errors.join(""));
+      setErrors(result.errors.join(""));
     }
   }
 
@@ -84,10 +85,17 @@ function LoginForm({ login }) {
     return invalidInputArr.length > 0;
   }
 
+  let errorMsg = errors ? (
+    <div class="alert alert-danger">
+      {errors}
+    </div>
+  ) : null;
+
   return (
     <Container>
+      <h2 className="my-4">Log In</h2>
 
-        <h2 className="my-4">Log In</h2>
+      {errorMsg}
 
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="username">

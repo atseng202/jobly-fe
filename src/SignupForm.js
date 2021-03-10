@@ -4,17 +4,17 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 
-/* 
-* Renders the signup form
-*
-* props:
-* -signup: fn to be called in parent
-*
-* state: 
-* - formData {username, password, firstName, lastName, email}
-* 
-* App -> Routes -> SignupForm
-*/
+/*
+ * Renders the signup form
+ *
+ * props:
+ * -signup: fn to be called in parent
+ *
+ * state:
+ * - formData {username, password, firstName, lastName, email}
+ *
+ * App -> Routes -> SignupForm
+ */
 
 const initialFormData = {
   username: "",
@@ -22,53 +22,56 @@ const initialFormData = {
   firstName: "",
   lastName: "",
   email: "",
-}
+};
 
-function SignupForm({ signup }){
-
-  const [formData, setFormData ] = useState(initialFormData);
+function SignupForm({ signup }) {
+  const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState(null);
   const history = useHistory();
 
-    /** Handle input changes and show them on input */  
+  /** Handle input changes and show them on input */
 
-    function handleChange(evt) {
-      const { name, value  } = evt.target;
-      setFormData( prevFormData => {
-        return {
-          ...prevFormData,
-          [name] : value,
-        }
-      });
+  function handleChange(evt) {
+    const { name, value } = evt.target;
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+  }
+
+  /** Handle submitting the Signup Form */
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    const result = await signup(formData);
+    setFormData(initialFormData);
+
+    if (result.success === true) {
+      history.push("/companies");
+    } else {
+      // TODO: need to change to something more presentable
+      setErrors(result.errors.join(""));
     }
-  
-    /** Handle submitting the Signup Form */  
-    async function handleSubmit(evt) {
-      evt.preventDefault();
-      const result = await signup(formData);
-      setFormData(initialFormData);
-      
-      if (result.success === true) {
-        history.push("/companies") 
-      } else {
-        // TODO: need to change to something more presentable
-        alert(result.errors.join(""));
-      }
-    }
+  }
 
-    /* Helper function for form validation */
+  /* Helper function for form validation */
 
-    function notDone() {
-      const invalidInputArr = Object.keys(formData).filter( key => {
-        return formData[key].length  < 1;
-      });
+  function notDone() {
+    const invalidInputArr = Object.keys(formData).filter((key) => {
+      return formData[key].length < 1;
+    });
 
-      return invalidInputArr.length > 0;
-    }
-  
+    return invalidInputArr.length > 0;
+  }
+
+  let errorMsg = errors ? <div class="alert alert-danger">{errors}</div> : null;
 
   return (
     <Container>
       <h2 className="my-4">Sign Up</h2>
+
+      {errorMsg}
 
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="username">
