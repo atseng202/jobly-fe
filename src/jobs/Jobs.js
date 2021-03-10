@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import JobCardList from './JobCardList';
-import SearchForm from './SearchForm';
-import JoblyApi from './api';
+import SearchForm from '../SearchForm';
+import JoblyApi from '../api';
 
 /** Bootstrap Components */
 

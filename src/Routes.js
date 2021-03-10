@@ -1,11 +1,11 @@
 import { Route, Switch, Redirect } from "react-router-dom";
-import SignupForm from "./SignupForm";
-import LoginForm from "./LoginForm";
-import Companies from "./Companies";
-import Jobs from "./Jobs";
-import ProfileForm from "./ProfileForm";
+import SignupForm from "./user/SignupForm";
+import LoginForm from "./user/LoginForm";
+import Companies from "./companies/Companies";
+import Jobs from "./jobs/Jobs";
+import ProfileForm from "./user/ProfileForm";
 import Homepage from "./Homepage";
-import CompanyDetail from "./CompanyDetail";
+import CompanyDetail from "./companies/CompanyDetail";
 
 /**
  * Routes for Jobly

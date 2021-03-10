@@ -1,6 +1,6 @@
-import JoblyApi from './api';
+import JoblyApi from '../api';
 import { useState, useEffect } from 'react';
-import SearchForm from './SearchForm';
+import SearchForm from '../SearchForm';
 import CompanyList from './CompanyList';
 import { Redirect } from 'react-router-dom';
 
