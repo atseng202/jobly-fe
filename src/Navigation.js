@@ -74,7 +74,7 @@ function Navigation({ logout, currentUser }) {
 		<Navbar bg="light" expand="lg">
 			<Nav.Link href="/">Jobly</Nav.Link>
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
-			{currentUser !== null ? renderLoggedInLinks(currentUser.username) : renderLoggedOutLinks()}
+			{elementsToRender()}
 		</Navbar>
 	);
 }

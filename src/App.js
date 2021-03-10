@@ -62,15 +62,15 @@ function App() {
         _fetchCurrentUser();
       }
     },
-    [token]
+    [token, setToken]
   );
 
   /** signup user with form data and API call */
   async function signup(userFormData) {
-    let token;
+    let newToken;
     try {
-      token = await JoblyApi.register(userFormData);
-      setToken(token);
+      newToken = await JoblyApi.register(userFormData);
+      setToken(newToken);
       return {
         success: true,
       };

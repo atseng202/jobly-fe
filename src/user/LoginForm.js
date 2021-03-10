@@ -53,10 +53,8 @@ function LoginForm({ login }) {
     setFormData(initialFormData);
 
     if (result.success === true) {
-      history.push("/companies");
+      history.push("/");
     } else {
-      // TODO: need to change to something more presentable
-      // alert(result.errors.join(""));
       setErrors(result.errors.join(""));
     }
   }
@@ -86,7 +84,7 @@ function LoginForm({ login }) {
   }
 
   let errorMsg = errors ? (
-    <div class="alert alert-danger">
+    <div className="alert alert-danger">
       {errors}
     </div>
   ) : null;
@@ -105,7 +103,6 @@ function LoginForm({ login }) {
             name="username"
             value={formData.username}
             onChange={handleChange}
-            defaultValue="testuser"
             required
           />
         </Form.Group>
@@ -117,7 +114,6 @@ function LoginForm({ login }) {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            defaultValue="password"
             required
           />
         </Form.Group>

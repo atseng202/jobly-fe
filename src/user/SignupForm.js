@@ -48,9 +48,8 @@ function SignupForm({ signup }) {
     setFormData(initialFormData);
 
     if (result.success === true) {
-      history.push("/companies");
+      history.push("/");
     } else {
-      // TODO: need to change to something more presentable
       setErrors(result.errors.join(""));
     }
   }
@@ -65,7 +64,7 @@ function SignupForm({ signup }) {
     return invalidInputArr.length > 0;
   }
 
-  let errorMsg = errors ? <div class="alert alert-danger">{errors}</div> : null;
+  let errorMsg = errors ? <div className="alert alert-danger">{errors}</div> : null;
 
   return (
     <Container>
@@ -92,7 +91,6 @@ function SignupForm({ signup }) {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            defaultValue="password"
             required
           />
         </Form.Group>
@@ -104,7 +102,6 @@ function SignupForm({ signup }) {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            defaultValue="test"
             required
           />
         </Form.Group>
@@ -116,7 +113,6 @@ function SignupForm({ signup }) {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            defaultValue="test"
             required
           />
         </Form.Group>
@@ -128,7 +124,6 @@ function SignupForm({ signup }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            defaultValue="test@test.com"
             required
           />
         </Form.Group>
