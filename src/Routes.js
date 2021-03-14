@@ -13,6 +13,7 @@ import CompanyDetail from "./companies/CompanyDetail";
  * props: 
  * - signup: fn to be called in App
  * - login: fn to be called in App
+ * - update: fn to be called in App
  * - currentUser: obj like 
  *     { username, firstName, lastName, email, isAdmin, jobs }
  * 
@@ -27,7 +28,7 @@ import CompanyDetail from "./companies/CompanyDetail";
  *    Redirect - to homepage
  **/
 
-function Routes({signup, login, currentUser }) {
+function Routes({signup, login, update, currentUser }) {
 
   return (
    
@@ -48,7 +49,7 @@ function Routes({signup, login, currentUser }) {
           <Jobs currentUser={currentUser} />
         </Route>
         <Route exact path="/profile">
-          <ProfileForm currentUser={currentUser}/>
+          <ProfileForm currentUser={currentUser} update={update}/>
         </Route>
         <Route exact path="/">
           <Homepage currentUser={currentUser} />

@@ -55,7 +55,6 @@ function App() {
 
       if (token === null ) {
         console.debug("token in effect: ", token);
-        JoblyApi.token = null;
       } else {
         console.debug("token is not null? ", token);
         JoblyApi.token = token;
@@ -106,6 +105,26 @@ function App() {
     setCurrentUserData(null);
   }
 
+  /**
+   * Update current user information and set state
+   * for new current user data
+   */
+  async function update(username, userFormData) {
+    let updatedUser;
+    try {
+      updatedUser = await JoblyApi.updateUser(username, userFormData);
+      setCurrentUserData(updatedUser);
+      return {
+        success: true
+      };
+    } catch (err) {
+      return {
+        success: false,
+        errors: err,
+      };
+    }
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -115,6 +134,7 @@ function App() {
             currentUser={currentUserData}
             login={login}
             signup={signup}
+            update={update}
           />
         </Container>
       </BrowserRouter>
