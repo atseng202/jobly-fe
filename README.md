@@ -6,7 +6,7 @@ The backend deployment was split into a separate repository for easier deploymen
 
 
 # App Highlights
-* New uers can log in / sign up to access protected routes
+* New users can log in / sign up to access protected routes
 * Logged in users can edit their profile users
 * Logged in users can view companies and company details, which include job postings related to the company
 * Logged in users can view all jobs available or make custom queries
